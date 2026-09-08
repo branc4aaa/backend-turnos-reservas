@@ -1,8 +1,8 @@
 import app from './app.js';
 import envConfig from './config/env.config.js';
-import connectDB from './config/db.config.js';
+import connectDB from './config/databaseConfig.js';
 
-connectDB();
+await connectDB();
 
 const PORT = envConfig.PORT || 3000;
 

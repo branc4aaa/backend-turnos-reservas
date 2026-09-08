@@ -1,4 +1,4 @@
-import ServiceModel from "../models/serviceModel";  
+import ServiceModel from "../models/serviceModel.js";  
 
 class ServicesDao {
     constructor() {

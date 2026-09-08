@@ -1,9 +1,9 @@
-import mongoose from "mongoose";
+import { Schema, model }from "mongoose";
 
-const bookingServiceSchema = new mongoose.Schema(
+const bookingServiceSchema = new Schema(
   {
     service: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "Service",
       required: true,
     },
@@ -20,7 +20,7 @@ const bookingServiceSchema = new mongoose.Schema(
   }
 );
 
-const bookingSchema = new mongoose.Schema(
+const bookingSchema = new Schema(
   {
     clientName: {
       type: String,
@@ -48,6 +48,7 @@ const bookingSchema = new mongoose.Schema(
     status: {
       type: String,
       required: true,
+      enum: ["pending", "confirmed", "cancelled"],
       default: "pending",
     },
 
@@ -62,6 +63,7 @@ const bookingSchema = new mongoose.Schema(
   }
 );
 
-const Booking = mongoose.model("Booking", bookingSchema);
+const BookingModel = model("Booking", bookingSchema);
 
-export default Booking;
+export default BookingModel
+;
