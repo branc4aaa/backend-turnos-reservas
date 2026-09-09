@@ -4,7 +4,7 @@ import { engine } from "express-handlebars";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-export const configurarHandlebars = (app) => {
+export const configureHandlebars = (app) => {
     app.engine("hbs", engine({
         extname: ".hbs",
         defaultLayout: "main",

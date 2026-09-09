@@ -1,12 +1,7 @@
 import { Schema, model } from "mongoose";
 
 const servicesSchema = new Schema({
-        id: {
-            type: String,
-            unique: true,
-            required: true,
-        },
-
+        
         name: {
             type: String,
             required: true,
@@ -39,7 +34,6 @@ const servicesSchema = new Schema({
 
         available: {
             type: Boolean,
-            required: true,
             default: true,
         },
     },

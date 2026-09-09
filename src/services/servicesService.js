@@ -25,11 +25,11 @@ export default class ServicesService {
     }
 
     async createService(nuevoServicio) {
-        const { nombre, turnos, precio } = nuevoServicio;
-        if (!nombre || !turnos || !precio) {
+        const { name, duration, price, available, description, category } = nuevoServicio;
+        if (!name || !duration || !price || available === undefined || !description || !category) {
             throw new Error("Faltan datos, completar..."); 
         }
-        return await this.service.createService({ nombre, turnos, precio });
+        return await this.service.createService({ name, duration, price, available, description, category });
     }
 
     async updateService(id, serviceUpdate) {
