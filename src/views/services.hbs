@@ -1,0 +1,14 @@
+<section>
+    <div class="container">
+    <h1>{{title}}</h1>
+    <div class="services">
+        {{#each services}}
+            <div class="service">
+                <h2>{{name}}</h2>
+                <p class="turnos">Turnos disponibles: {{available}}</p>
+                <p class="price">Precio: ${{price}}</p>
+            </div>
+        {{/each}}
+    </div>
+</div>
+</section>
