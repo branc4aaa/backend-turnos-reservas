@@ -1,0 +1,14 @@
+<section>
+    <div>
+        <h1>Detalle de la Reserva</h1>
+        <h2>{{booking.clientName}}</h2>
+        <p>Fecha: {{booking.date}}</p>
+        <p>Hora: {{booking.time}}</p>
+        <p>Servicios:</p>
+        <ul>
+            {{#each booking.services}}
+            <li>{{this.name}} - ${{this.price}}</li>
+            {{/each}}
+        </ul>
+    </div>
+</section>

@@ -15,6 +15,13 @@ export class BookingDao {
             .populate("services.service");
     }
 
+    async getByIdView(id) {
+        return await BookingModel
+            .findById(id)
+            .populate("services.service")
+            .lean();
+    }
+
     async create(bookingData) {
         return await BookingModel.create(bookingData);
     }

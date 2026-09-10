@@ -22,6 +22,16 @@ export default class BookingService {
         return booking;
     }
 
+    async getBookingByIdView(id) {
+        const booking = await this.bookingRepository.getBookingByIdView(id);
+
+        if (!booking) {
+            throw new Error("Reserva no encontrada");
+        }
+
+        return booking;
+    }
+
     async createBooking(bookingData) {
         return await this.bookingRepository.createBooking(bookingData);
     }
