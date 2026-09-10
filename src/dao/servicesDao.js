@@ -11,11 +11,11 @@ class ServicesDao {
     }
 
     async getServices() {
-        return await this.serviceModel.find();
+        return await this.serviceModel.find().lean();
     }
 
     async getServiceById(id) {
-        return await this.serviceModel.findById(id);
+        return await this.serviceModel.findById(id).lean();
     }
 
     async updateService(id, serviceData) {

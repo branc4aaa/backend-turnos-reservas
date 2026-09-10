@@ -33,8 +33,9 @@ const servicesSchema = new Schema({
         },
 
         available: {
-            type: Boolean,
-            default: true,
+            type: String,
+            enum: ["yes", "no"],
+            default: "yes",
         },
     },
     {

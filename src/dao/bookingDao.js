@@ -1,11 +1,32 @@
-import {bookingModel} from "../models/bookingModel.js";
+import BookingModel from "../models/bookingModel.js";
 
-export default class BookingDao {
-    async getAll(){
-        return await bookingModel.find().lean();
+export class BookingDao {
+
+    async getAll() {
+        return await BookingModel
+            .find()
+            .populate("services.service")
+            .lean();
     }
-    async create(bookingData){
-        const newBooking = new bookingModel(bookingData);
-        return await newBooking.save();
+
+    async getById(id) {
+        return await BookingModel
+            .findById(id)
+            .populate("services.service");
+    }
+
+    async create(bookingData) {
+        return await BookingModel.create(bookingData);
+    }
+
+    async update(id, bookingData) {
+        return await BookingModel.findByIdAndUpdate(
+            id,
+            bookingData,
+            {
+                new: true,
+                runValidators: true
+            }
+        );
     }
 }
