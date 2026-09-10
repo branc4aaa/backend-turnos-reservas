@@ -13,6 +13,10 @@ export default class BookingRepository {
         return await this.bookingDao.getById(id);
     }
 
+    async getBookingByIdView(id) {
+    return await this.bookingDao.getByIdView(id);
+}
+
     async createBooking(bookingData) {
         return await this.bookingDao.create(bookingData);
     }
