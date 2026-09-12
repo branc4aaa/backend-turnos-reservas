@@ -9,8 +9,8 @@ export default class ServicesRepository {
         return await this.services.createService(serviceData);
     }
 
-    async getServices() {
-        return await this.services.getServices();
+    async getServices(filter = {}, options = {}) {
+        return await this.services.getServices(filter, options);
     }
 
     async getServiceById(id) {

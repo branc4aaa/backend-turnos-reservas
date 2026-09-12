@@ -5,10 +5,14 @@
         <p>Fecha: {{booking.date}}</p>
         <p>Hora: {{booking.time}}</p>
         <p>Servicios:</p>
-        <ul>
-            {{#each booking.services}}
-            <li>{{this.name}} - ${{this.price}}</li>
-            {{/each}}
-        </ul>
+        {{#each booking.services}}
+            <li>
+                {{service.name}}
+                -
+                ${{service.price}}
+                -
+                Cantidad: {{quantity}}
+            </li>
+        {{/each}}
     </div>
 </section>

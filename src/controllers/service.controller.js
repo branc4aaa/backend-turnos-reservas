@@ -4,10 +4,17 @@ const servicesService = new ServicesService();
 
 export const getServices = async (req, res) => {
     try {
-        const services = await servicesService.getServices();
-        res.json(services);
+        const result =
+            await servicesService.getServices(
+                req.query
+            );
+
+        res.status(200).json(result);
+
     } catch (error) {
-        res.status(404).json({ error: error.message });
+        res.status(400).json({
+            error: error.message
+        });
     }
 };
 
@@ -40,7 +47,7 @@ export const createService = async (req, res) => {
 export const updateService = async (req, res) => {
     try {
         const service = await servicesService.updateService(
-            req.params.sid,
+            req.params.id,
             req.body
         );
 
@@ -60,13 +67,13 @@ export const updateService = async (req, res) => {
 export const deleteService = async (req, res) => {
     try {
         const service = await servicesService.deleteService(
-            req.params.sid
+            req.params.id
         );
 
         const io = req.app.get("io");
 
         io.emit("serviceDeleted", {
-            id: req.params.sid
+            id: req.params.id
         });
 
         res.status(200).json({
