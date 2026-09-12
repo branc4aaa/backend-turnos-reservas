@@ -20,8 +20,7 @@ bookingsRouter.get("/:bid", getBookingById);
 bookingsRouter.post("/", validateBody(createBookingSchema), createBooking);
 
 bookingsRouter.post(
-    "/:bid/services/:sid",
-    validateBody(createBookingSchema),    addServiceToBooking
+    "/:bid/services/:sid", addServiceToBooking
 );
 
 export default bookingsRouter;
