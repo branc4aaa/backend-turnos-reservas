@@ -7,17 +7,21 @@ import {
     addServiceToBooking
 } from "../controllers/booking.controller.js";
 
-const router = Router();
+import { validateBody } from "../middlewares/validate.middleware.js";
+import { createBookingSchema } from "../validators/booking.validator.js";
 
-router.get("/", getBookings);
 
-router.get("/:bid", getBookingById);
+const bookingsRouter = Router();
 
-router.post("/", createBooking);
+bookingsRouter.get("/", getBookings);
 
-router.post(
+bookingsRouter.get("/:bid", getBookingById);
+
+bookingsRouter.post("/", validateBody(createBookingSchema), createBooking);
+
+bookingsRouter.post(
     "/:bid/services/:sid",
-    addServiceToBooking
+    validateBody(createBookingSchema),    addServiceToBooking
 );
 
-export default router;
+export default bookingsRouter;

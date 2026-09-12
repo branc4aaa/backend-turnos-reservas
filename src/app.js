@@ -2,7 +2,7 @@ import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import servicesRouter from './routes/servicesRoutes.js';
-import bookingRouter from './routes/bookingRoutes.js';
+import bookingsRouter from './routes/bookingRoutes.js';
 import { configureHandlebars } from './config/handlebars.js';
 import viewRouter from './routes/viewRoutes.js';
 
@@ -17,7 +17,7 @@ app.use(express.json());
 configureHandlebars(app);
 //routes
 app.use('/api/services', servicesRouter);
-app.use('/api/bookings', bookingRouter);
+app.use('/api/bookings', bookingsRouter);
 app.use('/', viewRouter);
 
 export default app;

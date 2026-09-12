@@ -1,14 +1,32 @@
 <section>
-    <div class="container">
-    <h1>{{title}}</h1>
-    <div class="services">
-        {{#each services}}
-            <div class="service">
-                <h2>{{name}}</h2>
-                <p class="turnos">Turnos disponibles: {{available}}</p>
-                <p class="price">Precio: ${{price}}</p>
-            </div>
-        {{/each}}
-    </div>
+    <h1>Servicios</h1>
+<div id="services-container">
+
+    {{#each services}}
+
+        <div class="service-card" data-id="{{_id}}">
+
+            <h2>{{name}}</h2>
+
+            <p>{{description}}</p>
+
+            <p>Duración: {{duration}} minutos</p>
+
+            <p>Precio: ${{price}}</p>
+
+            <p>Categoría: {{category}}</p>
+
+            {{#if available}}
+                <p>Disponible</p>
+            {{else}}
+                <p>No disponible</p>
+            {{/if}}
+
+        </div>
+
+    {{/each}}
+
 </div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/socket.js"></script>
 </section>

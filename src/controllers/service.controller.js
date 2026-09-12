@@ -20,34 +20,62 @@ export const getServiceById = async (req, res) => {
         res.status(404).json({ error: error.message });
     }
 };
-
 export const createService = async (req, res) => {
-    const nuevoServicio = req.body;
     try {
-        const createdService = await servicesService.createService(nuevoServicio);
-        res.status(201).json(createdService);
+        const service = await servicesService.createService(req.body);
+
+        const io = req.app.get("io");
+
+        io.emit("serviceCreated", service);
+
+        res.status(201).json(service);
+
     } catch (error) {
-        res.status(400).json({ error: error.message });
+        res.status(400).json({
+            error: error.message
+        });
     }
 };
 
 export const updateService = async (req, res) => {
-    const { id } = req.params;
-    const serviceUpdate = req.body;
     try {
-        const updatedService = await servicesService.updateService(id, serviceUpdate);
-        res.json(updatedService);
+        const service = await servicesService.updateService(
+            req.params.sid,
+            req.body
+        );
+
+        const io = req.app.get("io");
+
+        io.emit("serviceUpdated", service);
+
+        res.status(200).json(service);
+
     } catch (error) {
-        res.status(404).json({ error: error.message });
+        res.status(400).json({
+            error: error.message
+        });
     }
 };
 
 export const deleteService = async (req, res) => {
-    const { id } = req.params;
     try {
-        const deletedService = await servicesService.deleteService(id);
-        res.json(deletedService);
+        const service = await servicesService.deleteService(
+            req.params.sid
+        );
+
+        const io = req.app.get("io");
+
+        io.emit("serviceDeleted", {
+            id: req.params.sid
+        });
+
+        res.status(200).json({
+            message: "Servicio eliminado"
+        });
+
     } catch (error) {
-        res.status(404).json({ error: error.message });
+        res.status(400).json({
+            error: error.message
+        });
     }
 };
