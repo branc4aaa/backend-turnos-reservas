@@ -10,8 +10,32 @@ class ServicesDao {
         return await service.save();
     }
 
-    async getServices() {
-        return await this.serviceModel.find().lean();
+    async getServices(filter = {}, options = {}) {
+
+        const {
+            page = 1,
+            limit = 10,
+            sort = "createdAt",
+            order = -1
+        } = options;
+
+        const skip = (page - 1) * limit;
+
+        const [services, total] = await Promise.all([
+            ServiceModel
+                .find(filter)
+                .sort({ [sort]: order })
+                .skip(skip)
+                .limit(limit)
+                .lean(),
+
+            ServiceModel.countDocuments(filter)
+        ]);
+
+        return {
+            services,
+            total
+        };
     }
 
     async getServiceById(id) {

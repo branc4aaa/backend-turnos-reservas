@@ -7,10 +7,18 @@ const bookingService = new BookingService();
 
 export const getServicesView = async (req, res) => {
     try {
-        const services = await servicesService.getServices();
-        res.render("services", { services });
+
+        const result = await servicesService.getServices(
+            req.query
+        );
+
+        res.render("services", {
+            services: result.services,
+            pagination: result.pagination
+        });
+
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        res.status(500).send(error.message);
     }
 };
 
